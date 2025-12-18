@@ -1,0 +1,114 @@
+.zunzuns-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #0f0f0f;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+/* HEADER */
+.zunzuns-header {
+  padding: 1rem;
+  background: #161616;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.zunzuns-back {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  color: #ffae18;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.zunzuns-back:hover {
+  text-decoration: underline;
+}
+
+.zunzuns-warning {
+  font-size: 0.85rem;
+  color: #ccc;
+  margin-top: 0.5rem;
+}
+
+/* CHAT */
+.zunzuns-chat {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.zunzuns-empty {
+  text-align: center;
+  opacity: 0.7;
+}
+
+.zunzuns-message {
+  background: #1f1f1f;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+}
+
+.zunzuns-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #aaa;
+}
+
+.zunzuns-user {
+  font-weight: bold;
+  color: #ffae18;
+}
+
+.zunzuns-text {
+  margin-top: 0.25rem;
+  line-height: 1.4;
+}
+
+/* FORM */
+.zunzuns-form {
+  display: flex;
+  padding: 0.75rem;
+  background: #161616;
+  border-top: 1px solid #2a2a2a;
+}
+
+.zunzuns-form input {
+  flex: 1;
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  margin-right: 0.5rem;
+}
+
+.zunzuns-form button {
+  padding: 0.6rem 1rem;
+  background: #ffae18;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.zunzuns-form button:hover {
+  opacity: 0.9;
+}
+
+/* 📱 MOBILE */
+@media (max-width: 600px) {
+  .zunzuns-header h1 {
+    font-size: 1.2rem;
+  }
+
+  .zunzuns-warning {
+    font-size: 0.75rem;
+  }
+
+  .zunzuns-form input {
+    font-size: 0.9rem;
+  }
+}

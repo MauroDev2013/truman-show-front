@@ -1,0 +1,138 @@
+.teorias-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #0f0f0f;
+  color: white;
+}
+
+.teorias-header {
+  padding: 1rem;
+  text-align: center;
+  background: linear-gradient(90deg, #1a1a1a, #111);
+}
+
+.zunzuns-back {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  color: #ffae18;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.zunzuns-back:hover {
+  text-decoration: underline;
+}
+
+.leaflet-react-icon {
+  background: transparent;
+  border: none;
+}
+
+.teorias-header button {
+  margin-top: 0.5rem;
+  padding: 8px 16px;
+  background: #ffae18;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.map-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.teorias-map {
+  width: 100%;
+  height: 100%;
+}
+
+/* LEGENDA */
+.map-legend {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  z-index: 500;
+}
+
+.map-legend h4 {
+  margin-bottom: 6px;
+}
+
+.map-legend div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.map-legend img {
+  width: 18px;
+  height: 18px;
+}
+
+/* MODAL */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal {
+  background: #1b1b1b;
+  padding: 1.5rem;
+  border-radius: 10px;
+  max-width: 420px;
+  width: 90%;
+}
+
+.modal input,
+.modal textarea {
+  width: 100%;
+  margin-bottom: 0.6rem;
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+}
+
+.modal-warning {
+  font-size: 0.8rem;
+  color: #ccc;
+  margin-top: 6px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.modal button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.modal button.secondary {
+  background: #444;
+  color: white;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .map-legend {
+    font-size: 0.75rem;
+  }
+}
