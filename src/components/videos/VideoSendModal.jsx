@@ -6,7 +6,6 @@ function VideoSendModal({ open, onClose }) {
     const data = new FormData(e.target);
     const API_URL = import.meta.env.VITE_API_URL;
 
-    console.log("API_URL:", API_URL);
     await fetch(`${API_URL}/videos`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -18,7 +17,7 @@ function VideoSendModal({ open, onClose }) {
           ?.split(",")
           .map((f) => f.trim())
           .filter(Boolean),
-        videoUrl: data.get("videoUrl"), // extra específico de vídeo
+        videoUrl: data.get("videoUrl"), 
       }),
     });
 
@@ -32,8 +31,6 @@ function VideoSendModal({ open, onClose }) {
         <h2>Enviar vídeo</h2>
 
         <form onSubmit={handleSendVideo}>
-        console.log("Enviando vídeo...");
-          {/* FLAG PRINCIPAL */}
           <select name="mainFlag" required>
             <option value="">Flag principal</option>
             <option value="ET">ET</option>
@@ -42,20 +39,17 @@ function VideoSendModal({ open, onClose }) {
             <option value="Encobrimento">Encobrimento</option>
           </select>
 
-          {/* FLAGS SECUNDÁRIAS */}
           <input
             name="secondaryFlags"
             placeholder="Flags secundárias (opcional, separadas por vírgula)"
           />
 
-          {/* LINK DO VÍDEO */}
           <input
             name="videoUrl"
             placeholder="Link do vídeo (YouTube, etc)"
             required
           />
 
-          {/* TEORIA / DESCRIÇÃO */}
           <textarea
             name="theory"
             placeholder="Explique a teoria do vídeo"
@@ -63,7 +57,6 @@ function VideoSendModal({ open, onClose }) {
             required
           />
 
-          {/* AÇÕES */}
           <div className="modal-actions">
             <button type="button" className="btn-cancel" onClick={onClose}>
               Cancelar

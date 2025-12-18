@@ -1,17 +1,24 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import { Link } from "react-router-dom";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "./TeoriasPage.css";
 import { renderToStaticMarkup } from "react-dom/server";
+
+/* MODAIS */
+import TeoriaReadModal from "../components/teorias/TeoriaReadModal";
+import TeoriaSendModal from "../components/teorias/TeoriaSendModal";
+
+/* ICONES */
 import GhostIcon from "../assets/icons/GhostIcon";
 import UfoIcon from "../assets/icons/UfoIcon";
 import BloodIcon from "../assets/icons/BloodIcon";
 
+/* DADOS */
 import { teoriasStories } from "../data/teoriasStories";
 
-/* ICONES DO MAPA (MENORES E TEMÁTICOS) */
+/* ICONES DO MAPA */
 const icons = {
   ghost: new L.DivIcon({
     html: renderToStaticMarkup(<GhostIcon width={18} height={18} />),
@@ -35,54 +42,27 @@ const icons = {
   }),
 };
 
-
 function TeoriasPage() {
   const [selectedStory, setSelectedStory] = useState(null);
-  const [showForm, setShowForm] = useState(false);
-
-  const [form, setForm] = useState({
-    title: "",
-    story: "",
-    city: "",
-    state: "",
-    country: "",
-  });
-
-  function handleChange(e) {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  }
-
-  function handleSubmit() {
-    const body = `
-Nova história enviada para avaliação:
-
-Título: ${form.title}
-
-Local:
-Cidade: ${form.city}
-Estado: ${form.state}
-País: ${form.country}
-
-História:
-${form.story}
-    `;
-
-    window.location.href = `mailto:gabiofarias@outlook.com?subject=Nova Teoria Enviada&body=${encodeURIComponent(
-      body
-    )}`;
-  }
+  const [showSendModal, setShowSendModal] = useState(false);
 
   return (
     <div className="teorias-container">
+      {/* HEADER */}
       <header className="teorias-header">
         <Link to="/" className="zunzuns-back">
           ← Voltar
         </Link>
+
         <h1>🌍 Mapa das Teorias</h1>
         <p>Clique nos símbolos para explorar histórias ocultas</p>
-        <button onClick={() => setShowForm(true)}>➕ Enviar história</button>
+
+        <button onClick={() => setShowSendModal(true)}>
+          ➕ Enviar história
+        </button>
       </header>
 
+      {/* MAPA */}
       <div className="map-wrapper">
         <MapContainer
           center={[20, 0]}
@@ -119,64 +99,30 @@ ${form.story}
           <h4>Legenda</h4>
 
           <div>
-            <GhostIcon width={4} height={4} /> Fantasmas
+            <GhostIcon width={14} height={14} /> Fantasmas
           </div>
 
           <div>
-            <UfoIcon width={4} height={4} /> ETs
+            <UfoIcon width={14} height={14} /> ETs
           </div>
 
           <div>
-            <BloodIcon width={4} height={4} /> Conspirações
+            <BloodIcon width={14} height={14} /> Conspirações
           </div>
         </div>
       </div>
 
-      {/* MODAL HISTÓRIA */}
-      {selectedStory && (
-        <div className="modal-overlay" onClick={() => setSelectedStory(null)}>
-          <div className="modal" onClick={(e) => e.stopPropagation()}>
-            <h2>{selectedStory.title}</h2>
-            <p>{selectedStory.content}</p>
-            <button onClick={() => setSelectedStory(null)}>Fechar</button>
-          </div>
-        </div>
-      )}
+      {/* MODAL LEITURA */}
+      <TeoriaReadModal
+        story={selectedStory}
+        onClose={() => setSelectedStory(null)}
+      />
 
       {/* MODAL ENVIO */}
-      {showForm && (
-        <div className="modal-overlay" onClick={() => setShowForm(false)}>
-          <div className="modal" onClick={(e) => e.stopPropagation()}>
-            <h2>Enviar nova história</h2>
-
-            <input name="title" placeholder="Título" onChange={handleChange} />
-            <textarea
-              name="story"
-              placeholder="Conte a história..."
-              rows="5"
-              onChange={handleChange}
-            />
-            <input name="city" placeholder="Cidade" onChange={handleChange} />
-            <input
-              name="state"
-              placeholder="Estado / Região"
-              onChange={handleChange}
-            />
-            <input name="country" placeholder="País" onChange={handleChange} />
-
-            <p className="modal-warning">
-              📩 A história será avaliada antes de aparecer no mapa.
-            </p>
-
-            <div className="modal-actions">
-              <button onClick={handleSubmit}>Enviar</button>
-              <button className="secondary" onClick={() => setShowForm(false)}>
-                Cancelar
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <TeoriaSendModal
+        open={showSendModal}
+        onClose={() => setShowSendModal(false)}
+      />
     </div>
   );
 }
