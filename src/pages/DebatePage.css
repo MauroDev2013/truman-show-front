@@ -130,6 +130,25 @@
 .title-page {
   text-align: center;
 }
+
+.zunzuns-message.owner {
+  border-left: 4px solid #ffae18;
+  background: rgba(255, 174, 24, 0.15);
+}
+
+.zunzuns-user.owner {
+  color: #ff0202;
+  font-weight: bold;
+}
+
+.admin-actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-left: 6px;
+}
+
 /* 📱 MOBILE */
 @media (max-width: 600px) {
   .zunzuns-header h1 {

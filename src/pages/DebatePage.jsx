@@ -1,70 +1,105 @@
-import ReturnIcon from "../assets/icons/ReturnIcon";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import io from "socket.io-client";
+import ReturnIcon from "../assets/icons/ReturnIcon";
 import "./DebatePage.css";
+
+const socket = io("http://localhost:3001"); // troque no deploy
 
 function DebatePage() {
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
 
-  function handleSend(e) {
+  useEffect(() => {
+    socket.on("chat:init", setMessages);
+    socket.on("chat:new", (msg) =>
+      setMessages((prev) => [...prev, msg])
+    );
+    socket.on("chat:cleared", () => setMessages([]));
+    socket.on("auth:success", () => setIsAdmin(true));
+    socket.on("chat:banned", () =>
+      alert("⛔ You were banned")
+    );
+
+    return () => socket.off();
+  }, []);
+
+  function send(e) {
     e.preventDefault();
     if (!text.trim()) return;
-
-    const newMessage = {
-      id: Date.now(),
-      user: "Você",
-      content: text,
-      time: new Date().toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-      }),
-    };
-
-    setMessages([...messages, newMessage]);
+    socket.emit("chat:send", text);
     setText("");
+  }
+
+  function adminLogin() {
+    const key = prompt("Admin key:");
+    if (key) socket.emit("auth", key);
   }
 
   return (
     <main className="zunzuns-container">
       <header className="zunzuns-header">
         <Link to="/" className="zunzuns-back">
-          <ReturnIcon className="btn-icon" /> 
+          <ReturnIcon className="btn-icon" />
         </Link>
 
-        <h1 className="title-page" >💬 Discussion</h1>
+        <h1 className="title-page">💬 Discussion</h1>
 
         <p className="zunzuns-warning">
-          ⚠️ This chat is deleted every day at midnight.<br />
-          🤝 Respect is essential for maintaining a healthy space.
+          Chat resets at midnight · No media allowed
         </p>
+
+        {!isAdmin && (
+          <button onClick={adminLogin}>🔑</button>
+        )}
       </header>
 
       <section className="zunzuns-chat">
-        {messages.length === 0 ? (
-          <div className="zunzuns-empty">
-            <p>👀 None yet.</p>
-            <p>Start a debate.</p>
-          </div>
-        ) : (
-          messages.map((msg) => (
-            <div key={msg.id} className="zunzuns-message">
-              <div className="zunzuns-meta">
-                <span className="zunzuns-user">{msg.user}</span>
-                <span className="zunzuns-time">{msg.time}</span>
-              </div>
-              <p className="zunzuns-text">{msg.content}</p>
+        {messages.map((msg) => (
+          <div key={msg.id} className="zunzuns-message">
+            <div className="zunzuns-meta">
+              <span
+                className={
+                  msg.role === "owner"
+                    ? "zunzuns-user owner"
+                    : "zunzuns-user"
+                }
+              >
+                {msg.user}
+              </span>
+              <span>{msg.time}</span>
             </div>
-          ))
-        )}
+
+            <p>{msg.content}</p>
+
+            {isAdmin && msg.role !== "owner" && (
+              <div className="admin-actions">
+                <button
+                  onClick={() =>
+                    socket.emit("chat:mute", msg.socketId)
+                  }
+                >
+                  🔇
+                </button>
+                <button
+                  onClick={() =>
+                    socket.emit("chat:ban", msg.socketId)
+                  }
+                >
+                  ⛔
+                </button>
+              </div>
+            )}
+          </div>
+        ))}
       </section>
 
-      <form className="zunzuns-form" onSubmit={handleSend}>
+      <form className="zunzuns-form" onSubmit={send}>
         <input
-          type="text"
-          placeholder="tap your menssage..."
           value={text}
           onChange={(e) => setText(e.target.value)}
+          placeholder="Type a message..."
         />
         <button type="submit">Send</button>
       </form>
