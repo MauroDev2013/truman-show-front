@@ -7,8 +7,23 @@ function VideoReadModal({ video, onClose }) {
         <h2>{video.title}</h2>
 
         <p className="news-meta">
-          🎥 {video.channel} | 📅 {video.date}
+          🎥 {video.channel || "Unknown"} | 📅 {video.date}
         </p>
+
+        {/* PLAYER */}
+        {video.videoUrl ? (
+          <div className="video-wrapper">
+            <iframe
+              src={video.videoUrl}
+              title={video.title}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        ) : (
+          <p>⚠️ Video unavailable</p>
+        )}
 
         <div className="video-flags">
           {video.flags.map((f) => (
@@ -16,15 +31,11 @@ function VideoReadModal({ video, onClose }) {
           ))}
         </div>
 
-        <p><strong>Related to:</strong> {video.relatedTo.join(", ")}</p>
         <p><strong>Summary:</strong><br />{video.resume}</p>
-        <p><strong>Theory:</strong><br />{video.theory}</p>
 
-        <a href={video.link} target="_blank" rel="noreferrer">
-          ▶️ Watch video
-        </a>
-
-        <button onClick={onClose} className="button-read">Fechar</button>
+        <button onClick={onClose} className="button-read">
+          Fechar
+        </button>
       </div>
     </div>
   );
