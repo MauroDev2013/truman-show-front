@@ -10,6 +10,35 @@
   background: linear-gradient(90deg, #1a1a1a, #111);
 }
 
+.zunzuns-back {
+  position: fixed;
+  top: 20px;   /* distância do fundo */
+  left: 20px;     /* distância da esquerda */
+  bottom: auto;
+
+  background-color: #8b0000;
+  padding: 10px 12px;
+  color: wheat;
+  border-radius: 10px;
+  box-shadow: 5px 8px 20px #ff0606;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  z-index: 9999; /* fica acima de tudo */
+}
+
+.zunzuns-back:hover {
+  text-decoration: none;
+  background-color: #270101;
+}
+
+.btn-icon {
+  width: 22px;
+  height: 22px;
+}
+
 .videos-header button {
   margin-top: 0.6rem;
   padding: 8px 16px;
@@ -185,6 +214,10 @@
   padding: 10px;
   border-radius: 6px;
   font-weight: bold;
+}
+
+.button-read {
+  margin: 5px 50px;
 }
 
 @media (max-width: 768px) {

@@ -16,15 +16,15 @@ function VideoReadModal({ video, onClose }) {
           ))}
         </div>
 
-        <p><strong>Relacionado a:</strong> {video.relatedTo.join(", ")}</p>
-        <p><strong>Resumo:</strong><br />{video.resume}</p>
-        <p><strong>Teoria:</strong><br />{video.theory}</p>
+        <p><strong>Related to:</strong> {video.relatedTo.join(", ")}</p>
+        <p><strong>Summary:</strong><br />{video.resume}</p>
+        <p><strong>Theory:</strong><br />{video.theory}</p>
 
         <a href={video.link} target="_blank" rel="noreferrer">
-          ▶️ Assistir vídeo
+          ▶️ Watch video
         </a>
 
-        <button onClick={onClose}>Fechar</button>
+        <button onClick={onClose} className="button-read">Fechar</button>
       </div>
     </div>
   );

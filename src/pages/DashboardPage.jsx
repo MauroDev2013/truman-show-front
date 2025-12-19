@@ -10,7 +10,7 @@ import NewsIcon from "../assets/icons/NewsIcon";
 
 function DashboardPage() {
   const queenBee = {
-    achievement: "A melhor maneira que um prisioneiro nunca escape é garantir que ele nunca saiba que está na prisão.",
+    achievement: "The best way to ensure a prisioner never escapes is to guarantee he never knows he's in prision.",
   };
   const conspirationPhoto = MjPhoto;
 
@@ -32,7 +32,7 @@ function DashboardPage() {
 
           <Link to="/teorias" className="action-btn">
             <SkullIcon className="btn-icon" />
-            <span className="btn-text">'Teorias'</span>
+            <span className="btn-text">'Theories'</span>
           </Link>
 
           <Link to="/videos" className="action-btn">
@@ -42,7 +42,7 @@ function DashboardPage() {
 
           <Link to="/news" className="action-btn">
             <NewsIcon className="btn-icon2" />
-            <span className="btn-text2">Noticias</span>
+            <span className="btn-text2">News</span>
           </Link>
         </div>
       </header>
@@ -51,7 +51,7 @@ function DashboardPage() {
         <div className="main-content-row">
           <div className="main-hub">
             <div className="hub-title">
-              <h3>Destaque</h3>
+              <h3>Featured</h3>
               <img src={conspirationPhoto} alt="Destaque" className="conspiration-sings" />
             </div>
           </div>
@@ -64,7 +64,7 @@ function DashboardPage() {
 
         <div className="queen-bee-card">
           <div className="queen-bee-header">
-            <h3>Noticias da semana</h3>
+            <h3>News of the week</h3>
           </div>
 
           <div className="queen-bee-profile">

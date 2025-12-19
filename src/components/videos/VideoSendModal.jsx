@@ -21,49 +21,49 @@ function VideoSendModal({ open, onClose }) {
       }),
     });
 
-    alert("🎬 Vídeo enviado com sucesso!");
+    alert("🎬 Video sent successfully!");
     onClose();
   }
 
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
-        <h2>Enviar vídeo</h2>
+        <h2>Send video</h2>
 
         <form onSubmit={handleSendVideo}>
           <select name="mainFlag" required>
-            <option value="">Flag principal</option>
-            <option value="ET">ET</option>
+            <option value="">Main flag</option>
+            <option value="ET">Alien</option>
             <option value="Elite">Elite</option>
-            <option value="Fantasma">Fantasma</option>
-            <option value="Encobrimento">Encobrimento</option>
+            <option value="Fantasma">Ghost</option>
+            <option value="Encobrimento">conspiracy</option>
           </select>
 
           <input
             name="secondaryFlags"
-            placeholder="Flags secundárias (opcional, separadas por vírgula)"
+            placeholder="Secondary flags (optional, separated by commas), FJF, area 51, Elvis"
           />
 
           <input
             name="videoUrl"
-            placeholder="Link do vídeo (YouTube, etc)"
+            placeholder="Link to the video (YouTube, etc.)"
             required
           />
 
           <textarea
             name="theory"
-            placeholder="Explique a teoria do vídeo"
+            placeholder="Explain the theory behind the video."
             rows="5"
             required
           />
 
           <div className="modal-actions">
             <button type="button" className="btn-cancel" onClick={onClose}>
-              Cancelar
+              Cancel
             </button>
 
             <button type="submit" className="btn-submit">
-              Enviar
+              Send
             </button>
           </div>
         </form>

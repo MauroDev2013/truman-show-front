@@ -1,3 +1,4 @@
+import ReturnIcon from "../assets/icons/ReturnIcon";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./DebatePage.css";
@@ -28,22 +29,22 @@ function DebatePage() {
     <main className="zunzuns-container">
       <header className="zunzuns-header">
         <Link to="/" className="zunzuns-back">
-          ← Voltar
+          <ReturnIcon className="btn-icon" /> 
         </Link>
 
-        <h1>💬 Debate</h1>
+        <h1 className="title-page" >💬 Discussion</h1>
 
         <p className="zunzuns-warning">
-          ⚠️ Este chat é apagado todos os dias à meia-noite.<br />
-          🤝 Respeito é essencial para manter o espaço saudável.
+          ⚠️ This chat is deleted every day at midnight.<br />
+          🤝 Respect is essential for maintaining a healthy space.
         </p>
       </header>
 
       <section className="zunzuns-chat">
         {messages.length === 0 ? (
           <div className="zunzuns-empty">
-            <p>👀 Nenhuma mensagem ainda.</p>
-            <p>Seja o primeiro a iniciar o debate.</p>
+            <p>👀 None yet.</p>
+            <p>Start a debate.</p>
           </div>
         ) : (
           messages.map((msg) => (
@@ -61,11 +62,11 @@ function DebatePage() {
       <form className="zunzuns-form" onSubmit={handleSend}>
         <input
           type="text"
-          placeholder="Digite sua mensagem..."
+          placeholder="tap your menssage..."
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
-        <button type="submit">Enviar</button>
+        <button type="submit">Send</button>
       </form>
     </main>
   );

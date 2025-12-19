@@ -18,36 +18,36 @@ function TeoriaSendModal({ open, onClose }) {
       }),
     });
 
-    alert("📩 História enviada para avaliação!");
+    alert("📩 Story submitted for review!");
     onClose();
   }
 
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
-        <h2>Enviar nova história</h2>
+        <h2>Send new story</h2>
 
         <form onSubmit={handleSendTeoria}>
           <input name="title" placeholder="Título" required />
           <textarea
             name="story"
-            placeholder="Conte a história..."
+            placeholder="Tell your story..."
             rows="5"
             required
           />
-          <input name="city" placeholder="Cidade" />
-          <input name="state" placeholder="Estado / Região" />
-          <input name="country" placeholder="País" />
+          <input name="city" placeholder="City" />
+          <input name="state" placeholder="State / Region" />
+          <input name="country" placeholder="Country" />
 
           <p className="modal-warning">
-            📩 A história será avaliada antes de aparecer no mapa.
+            📩 The story will be evaluated before appearing on the map.
           </p>
 
           <div className="modal-actions">
             <button type="button" className="secondary" onClick={onClose}>
               Cancelar
             </button>
-            <button type="submit">Enviar</button>
+            <button type="submit">Send</button>
           </div>
         </form>
       </div>

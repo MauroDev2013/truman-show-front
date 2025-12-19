@@ -5,6 +5,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "./TeoriasPage.css";
 import { renderToStaticMarkup } from "react-dom/server";
+import ReturnIcon from "../assets/icons/ReturnIcon";
 
 /* MODAIS */
 import TeoriaReadModal from "../components/teorias/TeoriaReadModal";
@@ -51,14 +52,14 @@ function TeoriasPage() {
       {/* HEADER */}
       <header className="teorias-header">
         <Link to="/" className="zunzuns-back">
-          ← Voltar
+          <ReturnIcon className="btn-icon" /> 
         </Link>
 
-        <h1>🌍 Mapa das Teorias</h1>
-        <p>Clique nos símbolos para explorar histórias ocultas</p>
+        <h1>🌍 Theories</h1>
+        <p>Click on the simbols to explore hidden stories</p>
 
         <button onClick={() => setShowSendModal(true)}>
-          ➕ Enviar história
+          ➕ Send storie
         </button>
       </header>
 
@@ -96,18 +97,18 @@ function TeoriasPage() {
 
         {/* LEGENDA */}
         <div className="map-legend">
-          <h4>Legenda</h4>
+          <h4>Capition</h4>
 
           <div>
-            <GhostIcon width={14} height={14} /> Fantasmas
+            <GhostIcon width={14} height={14} /> Ghosts
           </div>
 
           <div>
-            <UfoIcon width={14} height={14} /> ETs
+            <UfoIcon width={14} height={14} /> Aliens/UFO
           </div>
 
           <div>
-            <BloodIcon width={14} height={14} /> Conspirações
+            <BloodIcon width={14} height={14} /> Conspiracy
           </div>
         </div>
       </div>

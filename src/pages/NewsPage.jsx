@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 import { newsData } from "../data/newsData";
 import NewsReadModal from "../components/news/NewsReadModal";
 import NewsSendModal from "../components/news/NewsSendModal";
+import ReturnIcon from "../assets/icons/ReturnIcon";
 import "./NewsPage.css";
 
-const THEMES = ["Todos", "ETs", "Elite", "Manipulação"];
+const THEMES = ["All", "Aliens", "Elite", "Manipulation"];
 
 function NewsPage() {
   const [selectedNews, setSelectedNews] = useState(null);
-  const [filter, setFilter] = useState("Todos");
+  const [filter, setFilter] = useState("All");
   const [flagSearch, setFlagSearch] = useState("");
   const [page, setPage] = useState(1);
   const [showForm, setShowForm] = useState(false);
@@ -17,7 +18,7 @@ function NewsPage() {
   const ITEMS_PER_PAGE = 6;
 
   const filteredNews = newsData
-    .filter((n) => filter === "Todos" || n.theme === filter)
+    .filter((n) => filter === "All" || n.theme === filter)
     .filter((n) =>
       flagSearch
         ? n.flags.some((f) =>
@@ -34,10 +35,12 @@ function NewsPage() {
   return (
     <div className="news-container">
       <header className="news-header">
-        <Link to="/" className="zunzuns-back">← Voltar</Link>
-        <h1>📰 Arquivos & Notícias</h1>
-        <p>Fatos reais conectados a teorias</p>
-        <button onClick={() => setShowForm(true)}>➕ Enviar notícia</button>
+        <Link to="/" className="zunzuns-back">
+          <ReturnIcon className="btn-icon" /> 
+        </Link>
+        <h1>📰 Files & News</h1>
+        <p>Theory about reported facts</p>
+        <button onClick={() => setShowForm(true)}>➕ Send News</button>
       </header>
 
       {/* FILTROS */}
@@ -59,7 +62,7 @@ function NewsPage() {
       {/* BUSCA POR FLAG */}
       <div className="flag-search">
         <input
-          placeholder="Buscar por flag (ET, Fantasma, Elite...)"
+          placeholder="Search by flag (ET, Fantasma, Elite...)"
           value={flagSearch}
           onChange={(e) => {
             setFlagSearch(e.target.value);

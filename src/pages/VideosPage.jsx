@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 import { videosData } from "../data/videosData";
 import VideoReadModal from "../components/videos/VideoReadModal";
 import VideoSendModal from "../components/videos/VideoSendModal";
+import ReturnIcon from "../assets/icons/ReturnIcon";
 import "./VideosPage.css";
 
-const THEMES = ["Todos", "ETs", "Elite", "Manipulação"];
+const THEMES = ["All", "Aliens", "Elite", "Manipulation"];
 
 function VideoPage() {
   const [selectedVideo, setSelectedVideo] = useState(null);
-  const [filter, setFilter] = useState("Todos");
+  const [filter, setFilter] = useState("All");
   const [flagSearch, setFlagSearch] = useState("");
   const [page, setPage] = useState(1);
   const [showForm, setShowForm] = useState(false);
@@ -17,7 +18,7 @@ function VideoPage() {
   const ITEMS_PER_PAGE = 6;
 
   const filteredVideos = videosData
-    .filter((v) => filter === "Todos" || v.theme === filter)
+    .filter((v) => filter === "All" || v.theme === filter)
     .filter((v) =>
       flagSearch
         ? v.flags.some((f) =>
@@ -34,10 +35,12 @@ function VideoPage() {
   return (
     <div className="videos-container">
       <header className="videos-header">
-        <Link to="/" className="zunzuns-back">← Voltar</Link>
-        <h1>🎬 Arquivos & Vídeos</h1>
-        <p>Vídeos conectados a teorias</p>
-        <button onClick={() => setShowForm(true)}>➕ Enviar vídeo</button>
+        <Link to="/" className="zunzuns-back">
+          <ReturnIcon className="btn-icon" /> 
+        </Link>
+        <h1>🎬 Files & Videos</h1>
+        <p>Videos connected to theories</p>
+        <button onClick={() => setShowForm(true)}>➕ Send video</button>
       </header>
 
       {/* FILTROS */}
@@ -59,7 +62,7 @@ function VideoPage() {
       {/* BUSCA POR FLAG */}
       <div className="flag-search">
         <input
-          placeholder="Buscar por flag (ET, Fantasma, Elite...)"
+          placeholder="Search by flag (ET, Ghosts , Elite...)"
           value={flagSearch}
           onChange={(e) => {
             setFlagSearch(e.target.value);

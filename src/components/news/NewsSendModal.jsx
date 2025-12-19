@@ -20,35 +20,35 @@ function NewsSendModal({ open, onClose }) {
       }),
     });
 
-    alert("📩 Notícia enviada com sucesso!");
+    alert("📩 News sent successfully!");
     onClose();
   }
 
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
-        <h2>Enviar teoria</h2>
+        <h2>Send theory</h2>
 
         <form onSubmit={handleSendNews}>
           {/* FLAG PRINCIPAL */}
           <select name="mainFlag" required>
-            <option value="">Flag principal</option>
-            <option value="ET">ET</option>
+            <option value="">Main flag</option>
+            <option value="ET">Alien</option>
             <option value="Elite">Elite</option>
-            <option value="Fantasma">Fantasma</option>
-            <option value="Encobrimento">Encobrimento</option>
+            <option value="Fantasma">Ghost</option>
+            <option value="Encobrimento">Conspiracy</option>
           </select>
 
           {/* FLAGS SECUNDÁRIAS */}
           <input
             name="secondaryFlags"
-            placeholder="Flags secundárias (opcional, separadas por vírgula)"
+            placeholder="Secondary flags (optional, separated by commas), FJF, area 51, Elvis"
           />
 
           {/* TEORIA */}
           <textarea
             name="theory"
-            placeholder="Explique a teoria da notícia e deixe o link da notícia"
+            placeholder="Explain the theory behind the news story and provide a link to the news article."
             rows="5"
             required
           />
@@ -56,11 +56,11 @@ function NewsSendModal({ open, onClose }) {
           {/* AÇÕES */}
           <div className="modal-actions">
             <button type="button" className="btn-cancel" onClick={onClose}>
-              Cancelar
+              Cancel
             </button>
 
             <button type="submit" className="btn-submit">
-              Enviar
+              Send
             </button>
           </div>
         </form>

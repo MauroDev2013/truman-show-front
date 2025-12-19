@@ -98,6 +98,38 @@
   opacity: 0.9;
 }
 
+.zunzuns-back {
+  position: fixed;
+  top: 20px;   /* distância do fundo */
+  left: 20px;     /* distância da esquerda */
+  bottom: auto;
+
+  background-color: #8b0000;
+  padding: 10px 12px;
+  color: wheat;
+  border-radius: 10px;
+  box-shadow: 5px 8px 20px #ff0606;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  z-index: 9999; /* fica acima de tudo */
+}
+
+.zunzuns-back:hover {
+  text-decoration: none;
+  background-color: #270101;
+}
+
+.btn-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.title-page {
+  text-align: center;
+}
 /* 📱 MOBILE */
 @media (max-width: 600px) {
   .zunzuns-header h1 {
