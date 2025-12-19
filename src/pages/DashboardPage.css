@@ -10,12 +10,12 @@
 }
 
 body {
-  background-image:
+    background-image:
     linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.78)),
     url('../assets/images/juice.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 /* CONTAINER */

@@ -4,7 +4,11 @@ import io from "socket.io-client";
 import ReturnIcon from "../assets/icons/ReturnIcon";
 import "./DebatePage.css";
 
-const socket = io("http://localhost:3001"); // troque no deploy
+const API_URL = import.meta.env.VITE_API_URL;
+
+const socket = io(API_URL, {
+  transports: ["websocket"],
+});
 
 function DebatePage() {
   const [messages, setMessages] = useState([]);
@@ -13,16 +17,26 @@ function DebatePage() {
 
   useEffect(() => {
     socket.on("chat:init", setMessages);
-    socket.on("chat:new", (msg) =>
-      setMessages((prev) => [...prev, msg])
-    );
-    socket.on("chat:cleared", () => setMessages([]));
-    socket.on("auth:success", () => setIsAdmin(true));
-    socket.on("chat:banned", () =>
-      alert("⛔ You were banned")
-    );
 
-    return () => socket.off();
+    socket.on("chat:new", (msg) => {
+      setMessages((prev) => [...prev, msg]);
+    });
+
+    socket.on("chat:cleared", () => setMessages([]));
+
+    socket.on("auth:success", () => setIsAdmin(true));
+
+    socket.on("chat:banned", () => {
+      alert("⛔ You were banned");
+    });
+
+    return () => {
+      socket.off("chat:init");
+      socket.off("chat:new");
+      socket.off("chat:cleared");
+      socket.off("auth:success");
+      socket.off("chat:banned");
+    };
   }, []);
 
   function send(e) {
@@ -44,7 +58,7 @@ function DebatePage() {
           <ReturnIcon className="btn-icon" />
         </Link>
 
-        <h1 className="title-page">💬 Discussion</h1>
+        <h1>💬 Discussion</h1>
 
         <p className="zunzuns-warning">
           Chat resets at midnight · No media allowed
