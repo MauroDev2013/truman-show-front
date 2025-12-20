@@ -49,7 +49,7 @@ function DashboardPage() {
           <div className="featured-video-wrapper">
             <video
               className="featured-video"
-              src="https://drive.google.com/file/d/16Rf6k5Z9x_3r9k68oI0ItYx5m9J-oKR9/view?usp=drive_link"
+              src="https://youtu.be/VlwXbr7RqTw"
               autoPlay
               muted
               loop
