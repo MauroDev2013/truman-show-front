@@ -110,23 +110,14 @@ body {
   z-index: 2;
 }
 
-.conspiration-sings {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  border-radius: 20px;
-  display: block;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.75);
-  border: 1px solid rgba(139,0,0,0.35);
-}
-
 /* =============================== */
-/* 📺 TV COM IMAGEM DE FUNDO */
+/* 📺 VÍDEO (DESKTOP OK) */
 /* =============================== */
-
 .featured-video-wrapper {
   position: relative;
   width: 100%;
+  aspect-ratio: 16 / 9;
+  min-height: 460px;
   border-radius: 22px;
   overflow: hidden;
 
@@ -143,17 +134,14 @@ body {
   border: 1px solid rgba(139,0,0,0.4);
 }
 
-/* VÍDEO */
-.featured-video {
+.featured-video-wrapper iframe {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
-  display: block;
-
-  object-fit: cover;
-  border-radius: 22px;
+  height: 100%;
 }
 
-/* 🎥 EFEITO CINEMA (overlay sutil) */
+/* OVERLAY */
 .featured-video-wrapper::after {
   content: "";
   position: absolute;
@@ -167,7 +155,7 @@ body {
   pointer-events: none;
 }
 
-/* CARD - NEWS OF THE WEEK */
+/* CARD - NEWS */
 .queen-bee-card {
   background: linear-gradient(
     180deg,
@@ -189,7 +177,6 @@ body {
 .queen-bee-header h3 {
   margin: 0;
   color: #fff;
-  letter-spacing: 0.5px;
 }
 
 .queen-bee-achievement {
@@ -200,10 +187,16 @@ body {
   text-align: center;
 }
 
-/* 📱 MOBILE */
 @media (max-width: 768px) {
+  .dashboard-container {
+    padding: 1px;
+    max-width: 400px;
+    margin: auto;
+    color: white;
+  }
 
   .dashboard-header {
+    margin: 0;
     flex-direction: column;
     align-items: center;
     text-align: center;
@@ -222,6 +215,15 @@ body {
     margin-top: 3px;
     order: 2;
   }
+
+  .queen-bee-header h3 {
+    margin: 0;
+  }
+
+.queen-bee-achievement {
+  padding: 20px;
+  text-align: center;
+}
 
   .action-btn {
     width: 44px;
@@ -247,16 +249,29 @@ body {
     object-fit: cover;
   }
 
-  /* 📱 AJUSTE DA TV NO MOBILE */
-    .featured-video-wrapper {
+  .dashboard-main-content {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-main-content {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  /* 🔥 CORREÇÃO REAL DO VÍDEO */
+  .featured-video-wrapper {
+    min-height: unset;        /* remove o problema */
+    aspect-ratio: 4 / 3;     /* mais alto no mobile */
     border-radius: 16px;
   }
 
-  .featured-video {
+  .featured-video-wrapper iframe {
     border-radius: 16px;
   }
 
   .hub-title {
     display: none;
   }
+
+
 }

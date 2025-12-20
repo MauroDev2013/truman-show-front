@@ -47,15 +47,14 @@ function DashboardPage() {
           <div className="hub-title">🎬 Featured Broadcast</div>
 
           <div className="featured-video-wrapper">
-            <video
-              className="featured-video"
-              src="https://youtu.be/VlwXbr7RqTw"
-              autoPlay
-              muted
-              loop
-              controls
-              playsInline
-            />
+            <iframe
+              src="https://www.youtube.com/embed/VlwXbr7RqTw?si=dWsVUK9sEGrUZln1"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            ></iframe>
           </div>
         </div>
 
