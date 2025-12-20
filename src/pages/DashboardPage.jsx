@@ -7,8 +7,6 @@ import PlayIcon from "../assets/icons/PlayIcon";
 import ChatIcon from "../assets/icons/ChatIcon";
 import NewsIcon from "../assets/icons/NewsIcon";
 
-import FeaturedVideo from "../assets/images/fas.mp4";
-
 function DashboardPage() {
   const queenBee = {
     achievement:
@@ -51,7 +49,7 @@ function DashboardPage() {
           <div className="featured-video-wrapper">
             <video
               className="featured-video"
-              src={FeaturedVideo}
+              src="https://drive.google.com/file/d/16Rf6k5Z9x_3r9k68oI0ItYx5m9J-oKR9/view?usp=drive_link"
               autoPlay
               muted
               loop
