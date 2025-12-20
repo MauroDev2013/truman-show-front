@@ -58,7 +58,7 @@ function DebatePage() {
           <ReturnIcon className="btn-icon" />
         </Link>
 
-        <h1>💬 Discussion</h1>
+        <h1 className="title-page">💬 Discussion</h1>
 
         <p className="zunzuns-warning">
           Chat resets at midnight · No media allowed
