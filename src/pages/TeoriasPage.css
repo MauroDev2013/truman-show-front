@@ -164,4 +164,8 @@
   .map-legend {
     font-size: 0.75rem;
   }
+
+  .leaflet-control-zoom {
+    display: none !important;
+  }
 }
