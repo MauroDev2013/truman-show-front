@@ -28,7 +28,7 @@ function TeoriaSendModal({ open, onClose }) {
         <h2>Send new story</h2>
 
         <form onSubmit={handleSendTeoria}>
-          <input name="title" placeholder="Título" required />
+          <input name="title" placeholder="Title" required />
           <textarea
             name="story"
             placeholder="Tell your story..."
