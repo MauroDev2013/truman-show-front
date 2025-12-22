@@ -45,7 +45,7 @@ function TeoriaSendModal({ open, onClose }) {
 
           <div className="modal-actions">
             <button type="button" className="secondary" onClick={onClose}>
-              Cancelar
+              Cancel
             </button>
             <button type="submit">Send</button>
           </div>
